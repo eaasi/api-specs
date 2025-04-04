@@ -1,0 +1,13 @@
+# buf configuration (https://buf.build/docs/configuration/v2/buf-yaml)
+
+version: v2
+modules:
+  - path: protos
+    includes:
+      - protos/eaasi
+lint:
+  use:
+    - STANDARD
+breaking:
+  use:
+    - FILE

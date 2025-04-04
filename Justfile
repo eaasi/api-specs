@@ -18,3 +18,7 @@ typocheck:
 # Run Buf's linter
 lint input=ProtoDir:
   buf lint "{{input}}"
+
+# Run Buf's breaking change detector
+breaking against=".git#branch=main" input=ProtoDir:
+  buf breaking "{{input}}" --against "{{against}}"

@@ -22,3 +22,7 @@ lint input=proto_dir:
 # Run Buf's breaking change detector
 breaking against=".git#branch=main" input=proto_dir:
   buf breaking "{{ input }}" --against "{{ against }}"
+
+# List all Protobuf files
+list-protos input=proto_dir:
+  buf ls-files "{{ input }}"

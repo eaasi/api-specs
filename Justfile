@@ -7,6 +7,9 @@ ConfigDir := "./configs"
 # Directory for Protobuf files
 ProtoDir := "./protobuf"
 
+# Directory for OpenAPI specs
+OpenApiDir := "./openapi"
+
 # Docker image name for the OpenAPI generator
 OpenApiGenName := "eaasi-openapi-generator"
 
@@ -35,3 +38,25 @@ list-protos input=ProtoDir:
 # Prepare OpenAPI generator runtime
 prepare-generator:
   docker build --tag "{{OpenApiGenName}}" .
+
+# Compile OpenAPI documentation
+compile-apidocs pbdir oadir: \
+  (generate-openapi-v2 pbdir oadir)
+
+# Compile OpenAPI specification
+compile-openapi variant="eaasi/v1" pbdir=(ProtoDir / variant) oadir=(OpenApiDir / variant): \
+  (compile-apidocs pbdir oadir)
+
+# Compile all OpenAPI specifications
+compile-openapi-all: \
+  (compile-openapi "eaasi/v1")
+
+[private]
+generate-openapi-v2 srcdir oadir mntdir="/work":
+  @echo 'Generating OpenAPI-2.0 specification: "{{srcdir}}" -> "{{oadir}}"'
+  docker run --rm --tty \
+    --volume "$PWD:{{mntdir}}:rw" \
+    --workdir "{{clean(mntdir / oadir)}}" \
+    "{{OpenApiGenName}}" buf generate \
+      "{{clean(mntdir / ProtoDir)}}" \
+      --path "{{clean(mntdir / srcdir)}}"

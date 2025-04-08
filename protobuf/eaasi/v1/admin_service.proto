@@ -1,0 +1,22 @@
+// SPDX-FileCopyrightText: 2025 Yale University
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package eaasi.v1;
+
+import "eaasi/v1/types/admin.proto";
+
+service AdminService {
+  // Fetch server build information
+  rpc GetBuildInfo(GetBuildInfoRequest) returns (GetBuildInfoResponse);
+}
+
+message GetBuildInfoRequest {
+  // Empty!
+}
+
+message GetBuildInfoResponse {
+  // Server build information
+  types.BuildInfo build = 1;
+}

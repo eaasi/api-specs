@@ -6,6 +6,10 @@ modules:
     includes:
       - protos/eaasi
     lint:
+      except:
+        - RPC_REQUEST_STANDARD_NAME
+        - RPC_RESPONSE_STANDARD_NAME
+        - RPC_REQUEST_RESPONSE_UNIQUE
       ignore_only:
         FILE_LOWER_SNAKE_CASE:
           - protos/eaasi/__openapi.proto

@@ -1,0 +1,19 @@
+# buf configuration (https://buf.build/docs/configuration/v2/buf-gen-yaml/)
+
+# NOTE: All paths here should be relative to the repository root!
+
+version: v2
+clean: true
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/eaasi/sdk-go
+plugins:
+  - local: protoc-gen-openapiv2
+    strategy: all
+    out: openapi/eaasi/v1alpha/apidocs
+    opt:
+      - allow_merge=true
+      - merge_file_name=eaasi
+      - openapi_naming_strategy=fqn

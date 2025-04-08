@@ -7,6 +7,9 @@ config_dir := "./configs"
 # Directory for Protobuf files
 proto_dir := "./protos"
 
+# Docker image name for the OpenAPI generator
+openapi_gen_name := "eaasi-openapi-generator"
+
 ### HELPERS ###################################################################
 
 # Run typo checker
@@ -26,3 +29,9 @@ breaking against=".git#branch=main" input=proto_dir:
 # List all Protobuf files
 list-protos input=proto_dir:
   buf ls-files "{{ input }}"
+
+### OPENAPI ###################################################################
+
+# Prepare OpenAPI generator runtime
+prepare-generator:
+  docker build --tag "{{ openapi_gen_name }}" .

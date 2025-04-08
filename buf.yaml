@@ -5,6 +5,10 @@ modules:
   - path: protobuf
     includes:
       - protobuf/eaasi/v1
+    lint:
+      ignore_only:
+        FILE_LOWER_SNAKE_CASE:
+          - protobuf/eaasi/v1/__openapi.proto
 lint:
   use:
     - STANDARD

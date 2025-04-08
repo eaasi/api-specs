@@ -5,6 +5,12 @@ modules:
   - path: protos
     includes:
       - protos/eaasi
+    lint:
+      ignore_only:
+        FILE_LOWER_SNAKE_CASE:
+          - protos/eaasi/__openapi.proto
+        PACKAGE_VERSION_SUFFIX:
+          - protos/eaasi/__openapi.proto
 lint:
   use:
     - STANDARD

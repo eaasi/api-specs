@@ -15,3 +15,4 @@ plugins:
       - allow_merge=true
       - merge_file_name=eaasi
       - openapi_naming_strategy=fqn
+      - openapi_configuration=./configs/openapi.yaml

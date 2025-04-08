@@ -9,6 +9,8 @@ modules:
       ignore_only:
         FILE_LOWER_SNAKE_CASE:
           - protobuf/eaasi/v1/__openapi.proto
+        PACKAGE_VERSION_SUFFIX:
+          - protobuf/eaasi/v1/types
 lint:
   use:
     - STANDARD

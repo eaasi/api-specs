@@ -17,6 +17,7 @@ plugins:
       - allow_merge=true
       - merge_file_name=eaasi
       - openapi_naming_strategy=fqn
+      - openapi_configuration=openapi/eaasi/v1alpha/configs/openapi.yaml
 inputs:
   - directory: protos
     paths:

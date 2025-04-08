@@ -1,0 +1,18 @@
+// SPDX-FileCopyrightText: 2025 Yale University
+// SPDX-License-Identifier: Apache-2.0
+
+syntax = "proto3";
+
+package eaasi.admin.v1alpha;
+
+// Server build information
+message BuildInfo {
+  // Git branch the server was built from
+  string branch = 1;
+
+  // Git commit of the server build
+  string commit = 2;
+
+  // Version tag of the server build
+  string version = 3;
+}

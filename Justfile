@@ -39,17 +39,29 @@ list-protos input=ProtoDir:
 prepare-generator:
   docker build --tag "{{OpenApiGenName}}" .
 
+# Compile OpenAPI configuration
+compile-configs oadir cuedir=(oadir / "cuedefs"): \
+  (compile-cuedefs (cuedir) (cuedir / "grpc/config.cue") (oadir / "configs/grpc.yaml")) \
+  (compile-cuedefs (cuedir) (cuedir / "openapi/config.cue") (oadir / "configs/openapi.yaml"))
+
 # Compile OpenAPI documentation
 compile-apidocs pbdir oadir: \
   (generate-openapi-v2 pbdir oadir)
 
 # Compile OpenAPI specification
 compile-openapi variant="eaasi/v1" pbdir=(ProtoDir / variant) oadir=(OpenApiDir / variant): \
+  (compile-configs oadir) \
   (compile-apidocs pbdir oadir)
 
 # Compile all OpenAPI specifications
 compile-openapi-all: \
   (compile-openapi "eaasi/v1")
+
+[private]
+compile-cuedefs dir file output:
+  @echo 'Compiling CUE definitions: "{{file}}" -> "{{output}}"'
+  cd "{{dir}}" && just compile "{{absolute_path(file)}}" > "{{absolute_path(output)}}"
+  @echo ''
 
 [private]
 generate-openapi-v2 srcdir oadir mntdir="/work":

@@ -9,4 +9,6 @@
 type: google.api.Service
 config_version: 3
 http:
-  rules: []
+  rules:
+    - selector: eaasi.admin.v1alpha.AdminService.GetBuildInfo
+      get: /admin/build-info

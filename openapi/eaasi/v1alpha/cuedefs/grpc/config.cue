@@ -6,6 +6,7 @@ package grpc
 import (
 	"list"
 	"github.com/eaasi/api-specs/eaasi/v1alpha/grpc:types"
+	"github.com/eaasi/api-specs/eaasi/v1alpha/grpc/services:adminsvc"
 )
 
 // HTTP rules for the gRPC API Configuration.
@@ -15,6 +16,7 @@ import (
 // https://cloud.google.com/endpoints/docs/grpc-service-config/reference/rpc/google.api#httprule
 
 let http_rules = list.Concat([
+	adminsvc.grpc.rules
 ]) & types.#HttpRuleList
 
 type: "google.api.Service"

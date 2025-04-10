@@ -16,3 +16,4 @@ plugins:
       - merge_file_name=eaasi
       - openapi_naming_strategy=fqn
       - openapi_configuration=./configs/openapi.yaml
+      - grpc_api_configuration=./configs/grpc.yaml
